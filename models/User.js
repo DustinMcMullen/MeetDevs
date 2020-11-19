@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { route } = require('../routes/api/auth');
+
 
 
 // Creating new UserSchema
@@ -26,5 +26,6 @@ const UserSchema = new mongoose.Schema ({
     }
 });
 
-// Exports the new user created usiing the model below
+
+// Exports the new user created using the model below
 module.exports = User = mongoose.model('User', UserSchema);
