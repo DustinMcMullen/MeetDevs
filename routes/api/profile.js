@@ -35,7 +35,7 @@ router.post("/",
 [auth, [
     check('status', "status is required").not().isEmpty(),
     check('skills', "skills are required").not().isEmpty()
-] ], function async (req, res) {
+] ], async function (req, res) {
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
         console.log(errors);
@@ -74,14 +74,30 @@ router.post("/",
         if(twitter) profileFields.social.twitter = twitter;
         if(facebook) profileFields.social.facebook = facebook;
         if(linkedin) profileFields.social.linkedin = linkedin;
-        if(instagram) profileFields.socialinstagram = instagram;
+        if(instagram) profileFields.social.instagram = instagram;
         
-
-
-
-
-
-        res.send("Created profile for user: " + req.user.id);
+        try {
+            let profile = await Profile.findOne({user: req.user.id});
+            if(profile) {
+                // Update Profile
+                profile = await Profile.findOneAndUpdate(
+                    {user: req.user.id},
+                    {$set: profileFields},
+                    {new: true}
+                );
+                return res.json(profile);
+            }
+            if(!profile) {
+                // create profile
+                const newProfile = new Profile (profileFields);
+                await newprofile.save();
+                return res.json(profile);
+            }
+        }
+        catch(err) {
+            console.error(err.message);
+            res.status(500).send("Eror with Server");
+        }
     }
 });
 
