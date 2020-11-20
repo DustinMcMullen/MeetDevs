@@ -90,7 +90,7 @@ router.post("/",
             if(!profile) {
                 // create profile
                 const newProfile = new Profile (profileFields);
-                await newprofile.save();
+                await newProfile.save();
                 return res.json(profile);
             }
         }
@@ -98,6 +98,43 @@ router.post("/",
             console.error(err.message);
             res.status(500).send("Eror with Server");
         }
+    }
+});
+
+
+
+// @route   Get api/profile
+// @desc    get ALL profiles
+// @access  public
+router.get("/", async function (req, res) {
+    try {
+        const allProfiles = await Profile.find().populate('User', ['name', 'avatar']);
+        res.json(allProfiles);
+    }
+    catch(err) {
+        console.error(err.message);
+        res.status(500).send("Error with Server");
+    }
+});
+
+
+
+// @route   Get api/profile/user/:user_Id
+// @desc    get profile by userId
+// @access  public
+router.get("/user/:user_Id", async function (req, res) {
+    try {
+        const userProfile = await Profile.findOne({user: req.params.user_Id});
+        if (!userProfile) {
+            res.status(400).json( {msg: "No profile for this user"});
+        }
+        else {
+            res.json(userProfile);
+        }
+    }
+    catch(err) {
+        console.error(err.message);
+        res.status(500).send("Error with Server");
     }
 });
 

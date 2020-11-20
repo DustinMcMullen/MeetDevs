@@ -118,3 +118,5 @@ dist
 
 # path to Atlas mongoDB
 default.json
+
+default.json
