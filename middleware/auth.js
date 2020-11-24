@@ -15,8 +15,6 @@ module.exports = (req, res, next) => {
         //  pass token & secret into jwt.verify() method to verify & decode.
         const decodedToken = jwt.verify(token, config.get('jwtSecret'));
         req.user = decodedToken.user;
-        console.log("middleware/auth.js works");
-        console.log(decodedToken);
         next();
      }
         catch (err) {
