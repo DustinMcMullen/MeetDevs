@@ -16,7 +16,7 @@ const {check, validationResult} = require('express-validator');
 
 
 // @route   GET api/auth
-// @desc    Test route
+// @desc    Login
 // @access  Private
 router.get("/", 
 auth, async function (req, res) {
@@ -71,7 +71,7 @@ function (req, res){
                     return res.status(400).json({errors: [ {msg: "incorrect password"} ] });
                 }
                 else if(isMatch) { 
-                    console.log("foundUser & pawword combo");
+                    console.log("foundUser & password combo");
                     const payload = {
                         user: {
                             id: foundUsers._id

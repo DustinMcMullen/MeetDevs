@@ -117,4 +117,4 @@ dist
 .pnp.*
 
 # path to Atlas mongoDB
-.default.json
+default.json
