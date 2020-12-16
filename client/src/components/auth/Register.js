@@ -2,6 +2,7 @@ import React, {Fragment, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {setAlert} from '../../actions/alert';
+import {register} from '../../actions/auth';
 import propTypes from 'prop-types';
 
 function Register (props) {
@@ -30,6 +31,7 @@ function Register (props) {
         }
         else{
             console.log("successfully submitted form");
+            props.register({name, email, password});
         }
     }
 
@@ -45,7 +47,7 @@ function Register (props) {
             name="name"
             value={name}
             onChange={handleChange}
-            required
+            // required
           />
         </div>
         <div className="form-group">
@@ -55,7 +57,7 @@ function Register (props) {
             name="email"
             value={email}
             onChange={handleChange}
-            required
+            // required
           />
           <small className="form-text"
             >This site uses Gravatar so if you want a profile image, use a
@@ -67,10 +69,10 @@ function Register (props) {
             type="password"
             placeholder="Password"
             name="password"
-            minLength="6"
+            // minLength="6"
             value={password}
             onChange={handleChange}
-            required
+            // required
           />
         </div>
         <div className="form-group">
@@ -78,10 +80,10 @@ function Register (props) {
             type="password"
             placeholder="Confirm Password"
             name="password2"
-            minLength="6"
+            // minLength="6"
             value={password2}
             onChange={handleChange}
-            required
+            // required
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
@@ -94,7 +96,8 @@ function Register (props) {
 }
 
 Register.propTypes = {
-  setAlert: propTypes.func.isRequired
+  setAlert: propTypes.func.isRequired,
+  register: propTypes.func.isRequired,
 };
 
-export default connect(null, {setAlert})(Register);
+export default connect(null, {setAlert, register})(Register);

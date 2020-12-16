@@ -17,7 +17,7 @@ Alert.propTypes = {
 // This allows us to get the alert state (the aray containing the alerts from the reducer).
     // alerts - is the name we are giving the name of the prop we want to have access to.
     // state - refers to the rootReducer (index.js file within reducers folder containing combineReducers).
-    // .alert - refers to the reducer we want access too within the rootReducer. (in this case the alert reducer).
+    // .alert - refers to the reducer we want access to within the rootReducer. (in this case the alert reducer).
 const mapStateToProps = state => ({
     alerts: state.alert
 });
