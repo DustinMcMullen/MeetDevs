@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
@@ -9,8 +9,17 @@ import './App.css';
 // Redux (provider is what links Redux to React)
 import {Provider} from 'react-redux';
 import store from './store';
+import {loadUser} from './actions/auth';
+import setAuthToken from './utilities/setAuthToken';
+
+if(localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 function App() {
+  useEffect( () => {
+    store.dispatch(loadUser());
+  }, []);
   return (
     <Provider store={store}>
       <Router>
