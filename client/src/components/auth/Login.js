@@ -1,9 +1,12 @@
 import React, {Fragment, useState} from 'react';
 import {Link} from 'react-router-dom';
-// import axios from 'axios';
+import {connect} from 'react-redux';
+import {setAlert} from '../../actions/alert';
+import {login} from '../../actions/auth';
+import propTypes from 'prop-types';
 
 
-function Login () {
+function Login (props) {
 
     const [formData, setFormData] = useState({
         email: "",
@@ -22,26 +25,8 @@ function Login () {
 
     async function submitForm(event){
         event.preventDefault();
-            // console.log(formData);
-            // const loginUser = {
-            //     email: email,
-            //     password: password
-            // }
-            // try{
-            //     const config = {
-            //         headers: {
-            //             'content-type': "application/json"
-            //         }
-            //     };
+            props.login(email, password);
 
-            //     const body = JSON.stringify(loginUser);
-            //     const res = await axios.post('api/auth', body, config);
-            //     console.log(res.data);
-            // }
-            // catch(err){
-            //     console.error(err.response.data);
-            // }
-            console.log("successfully submitted form");
     }
 
     return(
@@ -79,4 +64,9 @@ function Login () {
     )
 }
 
-export default Login
+Login.propTypes = {
+  login: propTypes.func.isRequired,
+};
+
+
+export default connect(null, {setAlert, login})(Login);
