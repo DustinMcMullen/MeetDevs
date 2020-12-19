@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {setAlert} from '../../actions/alert';
 import {login} from '../../actions/auth';
@@ -28,6 +28,11 @@ function Login (props) {
             props.login(email, password);
 
     }
+
+    // Redirect if logged in
+    // if(props.isAuthenticated) {
+    //   return <Redirect to='/dashboard' />
+    // }
 
     return(
         <Fragment>
@@ -66,7 +71,12 @@ function Login (props) {
 
 Login.propTypes = {
   login: propTypes.func.isRequired,
+  isAuthenticated: propTypes.bool
 };
 
+// literally maps something from the Redux state to a prop that we can pass into one of our React functions.
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
 
-export default connect(null, {setAlert, login})(Login);
+export default connect(mapStateToProps, {setAlert, login})(Login);
