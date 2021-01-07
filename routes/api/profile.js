@@ -17,7 +17,7 @@ const { response } = require('express');
 // @access  Private
 router.get("/me", auth, async function (req, res) {
     try {
-        const profile = await Profile.findOne({user: req.user.id}).populate('user', ['name', 'avatar']);
+        const profile = await Profile.findOne({user: req.user.id}).populate('User', ['name', 'avatar']);
         if(!profile) {
             res.status(400).json({msg: "No profile matching user in the database."});
         }

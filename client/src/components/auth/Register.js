@@ -30,13 +30,12 @@ function Register (props) {
             props.setAlert('Passwords do not match', 'danger');
         }
         else{
-            console.log("successfully submitted form");
             props.register({name, email, password});
         }
-    }
+    };
 
     if(props.isAuthenticated) {
-      <Redirect to='/dashboard' />
+      return <Redirect to='/dashboard' />
     }
 
     return(
@@ -99,14 +98,15 @@ function Register (props) {
     )
 }
 
-const mapStateToProps = state=> ({
-  isAuthenticated: state.auth.isAuthenticated
-});
 
 Register.propTypes = {
   setAlert: propTypes.func.isRequired,
   register: propTypes.func.isRequired,
   isAuthenticated: propTypes.bool
 };
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
 
 export default connect(mapStateToProps, {setAlert, register})(Register);

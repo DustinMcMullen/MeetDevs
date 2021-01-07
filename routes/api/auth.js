@@ -60,18 +60,15 @@ function (req, res){
         }
 
         else if(!foundUsers) {
-            console.log("User doesn't exist in database");
             return res.status(200).send("User is not registered, please check email & password, or register new account.")
         }
 
         else if(foundUsers) {
-            console.log("found user: " + email);
             isMatch = await bcrypt.compare(password, foundUsers.password);
                 if(!isMatch){
                     return res.status(400).json({errors: [ {msg: "incorrect password"} ] });
                 }
                 else if(isMatch) { 
-                    console.log("foundUser & password combo");
                     const payload = {
                         user: {
                             id: foundUsers._id

@@ -19,6 +19,6 @@ module.exports = (req, res, next) => {
      }
         catch (err) {
             res.status(401).json({msg: "Token is not valid"});
-            console.log("issue with middleware/auth.js");
+            console.log("Token not valid");
         }
 }

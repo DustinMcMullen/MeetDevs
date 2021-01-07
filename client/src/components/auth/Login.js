@@ -30,9 +30,9 @@ function Login (props) {
     }
 
     // Redirect if logged in
-    // if(props.isAuthenticated) {
-    //   return <Redirect to='/dashboard' />
-    // }
+    if(props.isAuthenticated) {
+      return <Redirect to='/dashboard' />
+    }
 
     return(
         <Fragment>
