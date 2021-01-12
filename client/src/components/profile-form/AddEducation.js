@@ -108,6 +108,8 @@ const AddEducation = ({addEducation, history}) => {
                     cols="30"
                     rows="5"
                     placeholder="Program Description"
+                    onChange={updateFormData}
+                    value={description}
                 ></textarea>
                 </div>
                 <input type="submit" className="btn btn-primary my-1" onClick={submitFormData} />
