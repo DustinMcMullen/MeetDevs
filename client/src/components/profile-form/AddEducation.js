@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {useState, Fragment} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import Spinner from '../layout/Spinner';
 import {addEducation} from '../../actions/profile';
 
 const AddEducation = ({addEducation, history}) => {

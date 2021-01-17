@@ -73,7 +73,7 @@ const AddExperience = ({addExperience, history}) => {
                         setFormData({...formData, current: !current});
                         toggleToDate(!toDateDisabled);
                     }
-                } type="checkbox" checked={current} name="current" value="" value ={current} /> {" "} Current Job</p>
+                } type="checkbox" checked={current} name="current" value ={current} /> {" "} Current Job</p>
                 </div>
                 <div className="form-group">
                 <h4>To Date</h4>

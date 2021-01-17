@@ -37,7 +37,7 @@ const EditProfile = ({profile: {profile, loading}, createOrUpdateProfile, getCur
             linkedin: loading || !profile.social.linkedin ? '' : profile.social.linkedin,
             instagram: loading || !profile.social.instagram ? '' : profile.social.instagram
         });
-    }, [loading]);
+    }, [loading, getCurrentProfile]);
 
     const [displaySocialInputs, toggleDisplay] = useState(false);
 

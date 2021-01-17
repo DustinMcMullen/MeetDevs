@@ -28,4 +28,4 @@ const UserSchema = new mongoose.Schema ({
 
 
 // Exports the new user created using the model below
-module.exports = User = mongoose.model('User', UserSchema);
+module.exports = User = mongoose.model('user', UserSchema);
