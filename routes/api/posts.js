@@ -209,6 +209,7 @@ router.post("/comment/:id", [auth, [
         catch(err){
             console.error(err.message);
             res.status(500).send("Error with Server");
+            console.log("called to API but didn't send correct data to API");
         }
     }
 });
